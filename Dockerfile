@@ -23,13 +23,20 @@ RUN apt install -y libv4l-dev
 COPY companion/br-webui /home/pi/companion//br-webui
 ENV JOBS=7
 RUN cd /home/pi/companion/br-webui && npm install
-COPY companion /home/pi/companion/
-# Copy udev rules
-COPY companion/params/100.autopilot.rules /etc/udev/rules.d/
+
 RUN apt install -y gstreamer1.0-libav gstreamer1.0-plugins-base gstreamer1.0-plugins-bad gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
 ENV HOME=/home/pi
 
 RUN apt install -y python3 python3-pip
 RUN apt install -y zlib1g-dev
 RUN pip3 install mavproxy[server] pyserial
-CMD ["/bin/bash"]
+RUN pip3 install --upgrade pip
+RUN pip3 install git+https://github.com/williangalvani/MAVProxy.git@fixjson --upgrade
+COPY companion /home/pi/companion/
+
+# Copy udev rules
+COPY companion/params/100.autopilot.rules /etc/udev/rules.d/
+#CMD "/home/pi/companion/.companion.rc" >> /root/.bashrc
+ENTRYPOINT ["/bin/bash", "/home/pi/companion/.companion.rc"]
+
+#CMD ["/bin/bash"]
