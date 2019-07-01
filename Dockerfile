@@ -70,5 +70,8 @@ COPY companion/ /home/pi/companion/
 
 ENV COMPANION_DIR=/home/pi/companion/
 
+RUN apt update && apt install -y net-tools python-pip python-setuptools
+RUN pip2 install --upgrade pip
+RUN pip2 install grequests bluerobotics-ping==0.0.8
 #CMD ["/bin/bash"]
 ENTRYPOINT ["/bin/bash", "/home/pi/companion/.companion.rc"]
