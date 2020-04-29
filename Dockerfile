@@ -1,6 +1,6 @@
 
 FROM raspbian/stretch
-ENV JOBS=14 
+ENV JOBS=14
 
 RUN useradd -ou 0 -g 0 -ms /bin/bash pi
 USER pi
@@ -53,10 +53,10 @@ RUN cd /home/pi/companion/br-webui && npm install
 COPY companion/ /home/pi/companion/
 
 ## Install mavlink-router
-#RUN git clone https://github.com/intel/mavlink-router.git 
+#RUN git clone https://github.com/intel/mavlink-router.git
 #RUN cd mavlink-router && ./autogen.sh && ./configure CFLAGS='-g -O2' \
 #        --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib \
-#    --prefix=/usr 
+#    --prefix=/usr
 #RUN cd mavlink-router && git submodule update --init --recursive && make && make install
 #RUN mkdir /etc/mavlink-router
 #COPY main.conf /etc/mavlink-router/main.conf
