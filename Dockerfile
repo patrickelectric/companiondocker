@@ -31,7 +31,7 @@ ENV NPM_CONFIG_PREFIX=/home/pi/.npm-global
 
 
 #clone companion from git
-RUN git clone --branch dockerizing https://github.com/williangalvani/companion/
+RUN git clone --branch dockerizing https://github.com/bluerobotics/companion/
 #install ttyx
 RUN cd /home/pi/companion && npm install risacher/ttyx
 
