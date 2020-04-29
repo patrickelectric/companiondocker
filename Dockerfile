@@ -37,11 +37,8 @@ RUN cd /home/pi/companion && npm install risacher/ttyx
 
 #Install pip stuff
 RUN pip3 install --upgrade pip
-RUN pip3 install bluerobotics-ping==0.0.7
 RUN pip3 install mavproxy pyserial
-
-RUN pip2 install --upgrade pip
-RUN pip2 install grequests bluerobotics-ping==0.1.0
+RUN pip3 install grequests bluerobotics-ping==0.1.0
 
 #launch .companion.rc from rc.local
 RUN echo /home/pi/companion/.companion.rc >> /etc/rc.local
