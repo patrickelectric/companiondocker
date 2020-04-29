@@ -1,6 +1,6 @@
 
 FROM raspbian/stretch
-ENV JOBS=14 
+ENV JOBS=14
 
 RUN useradd -ou 0 -g 0 -ms /bin/bash pi
 USER pi
@@ -31,18 +31,14 @@ ENV NPM_CONFIG_PREFIX=/home/pi/.npm-global
 
 
 #clone companion from git
-RUN git clone --branch dockerizing https://github.com/williangalvani/companion/
+RUN git clone --branch dockerizing https://github.com/bluerobotics/companion/
 #install ttyx
 RUN cd /home/pi/companion && npm install risacher/ttyx
 
 #Install pip stuff
 RUN pip3 install --upgrade pip
-RUN pip3 install bluerobotics-ping==0.0.7
-RUN pip3 install mavproxy[server] pyserial
-RUN pip3 install git+https://github.com/williangalvani/MAVProxy.git@fixjson --upgrade
-
-RUN pip2 install --upgrade pip
-RUN pip2 install grequests bluerobotics-ping==0.0.8
+RUN pip3 install mavproxy pyserial
+RUN pip3 install grequests bluerobotics-ping==0.1.0
 
 #launch .companion.rc from rc.local
 RUN echo /home/pi/companion/.companion.rc >> /etc/rc.local
@@ -54,10 +50,10 @@ RUN cd /home/pi/companion/br-webui && npm install
 COPY companion/ /home/pi/companion/
 
 ## Install mavlink-router
-#RUN git clone https://github.com/intel/mavlink-router.git 
+#RUN git clone https://github.com/intel/mavlink-router.git
 #RUN cd mavlink-router && ./autogen.sh && ./configure CFLAGS='-g -O2' \
 #        --sysconfdir=/etc --localstatedir=/var --libdir=/usr/lib \
-#    --prefix=/usr 
+#    --prefix=/usr
 #RUN cd mavlink-router && git submodule update --init --recursive && make && make install
 #RUN mkdir /etc/mavlink-router
 #COPY main.conf /etc/mavlink-router/main.conf

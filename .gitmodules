@@ -1,4 +1,4 @@
 [submodule "companion"]
 	path = companion
-	url = https://github.com/williangalvani/companion
+	url = https://github.com/bluerobotics/companion
 	branch = dockerizing
