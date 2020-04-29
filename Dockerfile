@@ -38,8 +38,7 @@ RUN cd /home/pi/companion && npm install risacher/ttyx
 #Install pip stuff
 RUN pip3 install --upgrade pip
 RUN pip3 install bluerobotics-ping==0.0.7
-RUN pip3 install mavproxy[server] pyserial
-RUN pip3 install git+https://github.com/williangalvani/MAVProxy.git@fixjson --upgrade
+RUN pip3 install mavproxy pyserial
 
 RUN pip2 install --upgrade pip
 RUN pip2 install grequests bluerobotics-ping==0.0.8
