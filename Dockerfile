@@ -16,6 +16,7 @@ COPY 01_nodoc /etc/dpkg/dpkg.cfg.d/01_nodoc
 
 # Copy cleanup script
 COPY cleanup.sh /cleanup.sh
+RUN chmod +x /cleanup.sh
 
 #Update and isntall dependencies from apt
 RUN apt update && apt upgrade -y && apt-get install -y --no-install-recommends git python-dev python-pip python-libxml2 python-lxml libcurl4-openssl-dev libssl-dev libxml2-dev libxslt1-dev screen curl rpi-update gstreamer1.0-libav gstreamer1.0-tools gstreamer1.0-plugins-good gstreamer1.0-plugins-bad python3 python3-pip zlib1g-dev libv4l-dev libraspberrypi-bin autoconf pkg-config libtool v4l-utils net-tools python-pip python-setuptools make build-essential python3-setuptools python3-dev && rm -rf /var/lib/apt/lists/* && /cleanup.sh
